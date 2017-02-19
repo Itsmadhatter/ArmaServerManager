@@ -1,0 +1,117 @@
+﻿<Window x:Class="ArmaServerManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:ArmaServerManager"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="516.162" Width="697.348"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}" WindowStyle="None" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{x:Null}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <TabControl Margin="0,68,0,0">
+            <TabItem Header="Dashboard">
+                <Grid Background="#FFE5E5E5" Margin="-10,-25,-3,-5">
+                    <Label Content="Parameter:" HorizontalAlignment="Left" Margin="66,267,0,0" VerticalAlignment="Top" Width="80"/>
+                    <Button Content="Start" HorizontalAlignment="Left" Margin="483,407,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4"/>
+                    <Button Content="Stop" HorizontalAlignment="Left" Margin="567,407,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_5"/>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="37" Margin="73,293,0,0" VerticalAlignment="Top" Width="569">
+                        <TextBox x:Name="paramBox" TextWrapping="NoWrap" VerticalAlignment="Center"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Auto" Style="{StaticResource TextBlockStyle}" />
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="24" Margin="73,368,0,0" VerticalAlignment="Top" Width="569">
+                        <TextBox x:Name="extraparam" TextWrapping="Wrap" TextChanged="extraparam_TextChanged" Margin="0,0,0,-1" Background="White"/>
+                    </Border>
+                    <Label Content="Extra Parameter:" HorizontalAlignment="Left" Margin="66,342,0,0" VerticalAlignment="Top"/>
+                    <Label Content="CPU Usage:" HorizontalAlignment="Left" Margin="73,70,0,0" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="CpuUsage" HorizontalAlignment="Left" Margin="174,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Label Content="RAM Usage:" HorizontalAlignment="Left" Margin="73,117,0,0" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="RamUsage" HorizontalAlignment="Left" Margin="174,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Button Content="Open" HorizontalAlignment="Left" Margin="188,176,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="Button_Click_7"/>
+                    <Label Content="RPT Log File" HorizontalAlignment="Left" Margin="73,176,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Delete" HorizontalAlignment="Left" Margin="299,176,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="Button_Click_8"/>
+                    <Button Content="Live Monitor" HorizontalAlignment="Left" Margin="409,176,0,0" VerticalAlignment="Top" Width="115" Height="26" Click="Button_Click_6"/>
+                    <Label Content="Server Uptime:" HorizontalAlignment="Left" Margin="380,70,0,0" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="uptime" HorizontalAlignment="Left" Margin="508,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Server Settings">
+                <Grid Background="#FFE5E5E5" Margin="-7,-26,-2,-2">
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="82" Margin="15,67,0,0" VerticalAlignment="Top" Width="302">
+                        <TextBox x:Name="smodsbox" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalContentAlignment="Top" AcceptsReturn="True" Height="81" TextChanged="smodsbox_TextChanged"/>
+                    </Border>
+                    <Label Content="Servermods:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <Label Content="AutoInit" HorizontalAlignment="Left" Margin="13,202,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="autoinit" Content="Enabled" HorizontalAlignment="Left" Margin="16,228,0,0" VerticalAlignment="Top" ToolTip="Automatically initialize mission just like first client does. &#xA;Note: Server config file (server.cfg) must contain Persistent=1, if it's 0 autoInit skips." Checked="AutoInit_Checked" Unchecked="AutoInit_Unchecked"/>
+                    <TextBox x:Name="memory" HorizontalAlignment="Left" Height="23" Margin="408,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" ToolTip="Overrides memory allocation limit to a certain amount (in megabytes)." TextChanged="memory_TextChanged"/>
+                    <Label Content="Max Memory:" HorizontalAlignment="Left" Margin="402,90,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Netlog" HorizontalAlignment="Left" Margin="13,265,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="netlogs" Content="Enabled" HorizontalAlignment="Left" Margin="16,291,0,0" VerticalAlignment="Top" ToolTip="Enables multiplayer network traffic logging." Checked="NetLog_Checked" Unchecked="NetLog_Unchecked"/>
+                    <CheckBox x:Name="nologs" Content="Enabled" HorizontalAlignment="Left" Margin="192,232,0,0" VerticalAlignment="Top" ToolTip="Be aware this means none errors saved to RPT file (report log). Yet in case of crash the fault address block info is saved." Checked="NoLogs_Checked" Unchecked="NoLogs_Unchecked"/>
+                    <Label Content="No Logs" HorizontalAlignment="Left" Margin="190,206,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="hyperthreading" Content="Enabled" HorizontalAlignment="Left" Margin="192,291,0,0" VerticalAlignment="Top" ToolTip="Enables the use of all logical CPU cores for parallel tasks processing. If your CPU does not support Hyper-Threading or similar technology, this parameter is ignored. &#xA;When disabled, only physical cores are used." Checked="HT_Checked" Unchecked="HT_Unchecked"/>
+                    <Label Content="Hyper-Threading" HorizontalAlignment="Left" Margin="190,265,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="port" HorizontalAlignment="Left" Height="23" Margin="408,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" ToolTip="Port to have dedicated server listen on." TextChanged="port_TextChanged"/>
+                    <Label Content="Port:" HorizontalAlignment="Left" Margin="402,32,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="malloc" HorizontalAlignment="Left" Height="23" Margin="408,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="220" ToolTip="Sets the particular memory allocator to be used. Significantly affects both performance and stability of the game." TextChanged="malloc_TextChanged"/>
+                    <Label Content="Memory Allocator:" HorizontalAlignment="Left" Margin="402,139,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="nosound" Content="Enabled" HorizontalAlignment="Left" Margin="16,356,0,0" VerticalAlignment="Top" ToolTip="Disables sound output." Checked="NoSound_Checked" Unchecked="NoSound_Unchecked"/>
+                    <Label Content="No Sound" HorizontalAlignment="Left" Margin="13,330,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="filepatching" Content="Enabled" HorizontalAlignment="Left" Margin="192,356,0,0" VerticalAlignment="Top" ToolTip="Allow the game to load unpacked data." Checked="FilePatching_Checked" Unchecked="FilePatching_Unchecked"/>
+                    <Label Content="File Patching" HorizontalAlignment="Left" Margin="190,330,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="missiontomemory" Content="Enabled" HorizontalAlignment="Left" Margin="16,420,0,0" VerticalAlignment="Top" ToolTip="Server will load mission into memory on first client downloading it. &#xA;Then it keeps it pre-processed pre-cached in memory for next clients, saving some server CPU cycles." Checked="MissionToMemory_Checked" Unchecked="MissionToMemory_Unchecked"/>
+                    <Label Content="Mission To Memory" HorizontalAlignment="Left" Margin="13,394,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Width="102" Header="Mods">
+                <Grid Background="#FFE5E5E5" Margin="-7,-26,-4,-3">
+                    <xctk:CheckListBox x:Name="modlist" HorizontalAlignment="Left" Height="308" Margin="24,74,0,0" VerticalAlignment="Top" Width="634" 
+                         ItemSelectionChanged="modlist_ItemSelectionChanged"/>
+                    <Label Content="Available Mods:" HorizontalAlignment="Left" Margin="24,43,0,0" VerticalAlignment="Top"/>
+                    <Button Content="All" HorizontalAlignment="Left" Margin="24,387,0,0" VerticalAlignment="Top" Width="68" Height="29" Click="Button_Click_1"/>
+                    <Button Content="None" HorizontalAlignment="Left" Margin="116,387,0,0" VerticalAlignment="Top" Width="66" Height="29" Click="Button_Click_2"/>
+                    <Button Content="Refresh" HorizontalAlignment="Left" Margin="576,387,0,0" VerticalAlignment="Top" Width="82" Height="29" Click="Button_Click_3"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Rectangle Fill="#FF1C2A78" HorizontalAlignment="Left" Height="68" Stroke="Black" VerticalAlignment="Top" Width="697"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Background="Transparent" Foreground="#DDFFFFFF"/>
+        <Label Content="IP:" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#DDFFFFFF"/>
+        <Label Content="Port:" HorizontalAlignment="Left" Margin="196,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.081,1.938" Foreground="#DDFFFFFF"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="351,37,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF"/>
+        <Button HorizontalAlignment="Left" Margin="556,16,0,0" VerticalAlignment="Top" Width="55" Height="33" fa:Awesome.Content="Cog" Click="Button_Click_9"/>
+        <Button HorizontalAlignment="Left" Margin="626,16,0,0" VerticalAlignment="Top" Width="61" Height="33" Click="Button_Click" fa:Awesome.Content="Close"/>
+        <Label Content="Players:" HorizontalAlignment="Left" Margin="351,10,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF"/>
+        <TextBlock x:Name="PlayerCount" HorizontalAlignment="Left" Margin="409,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#DDB8B8B8"/>
+        <TextBlock x:Name="ServerStatus" HorizontalAlignment="Left" Margin="404,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="ServerPort" HorizontalAlignment="Left" Margin="237,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#DDB8B8B8"/>
+        <TextBlock x:Name="ServerName" HorizontalAlignment="Left" Margin="62,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#DDB8B8B8" MaxWidth="250" MaxHeight="16" TextTrimming="CharacterEllipsis"/>
+        <TextBlock x:Name="ServerIP" HorizontalAlignment="Left" Margin="39,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#DDB8B8B8"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArmaServerManager"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="ArmaServerManager.Monitor"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Monitor" Height="593.225" Width="671"
+        Closing="Monitor_FormClosing" Loaded="Window_Loaded">
+    <Grid>
+        <WindowsFormsHost Margin="10,57,10,46">
+            <wf:RichTextBox x:Name="MonitorRtf" ReadOnly="True" WordWrap="False" TabIndex="1"/>
+        </WindowsFormsHost>
+        <CheckBox x:Name="AutoUpdateChk" Content="Auto Update" HorizontalAlignment="Left" Margin="450,525,0,0" VerticalAlignment="Top" Checked="AutoUpdateChk_Checked" Unchecked="AutoUpdateChk_Unchecked" IsChecked="True"/>
+        <Button x:Name="RefreshBtn" Content="Refresh" HorizontalAlignment="Left" Margin="560,521,0,0" VerticalAlignment="Top" Width="84" Height="27" Click="RefreshBtn_Click"/>
+        <CheckBox x:Name="AutoScrollChk" Content="Auto Scroll" HorizontalAlignment="Left" Margin="10,34,0,0" VerticalAlignment="Top" Checked="AutoScrollChk_Checked" Unchecked="AutoScrollChk_Unchecked" IsChecked="True"/>
+        <CheckBox x:Name="WordWrapChk" Content="Word Wrap" HorizontalAlignment="Left" Margin="114,34,0,0" VerticalAlignment="Top" Checked="WordWrapChk_Checked" Unchecked="WordWrapChk_Unchecked"/>
+    </Grid>
+</Window>
